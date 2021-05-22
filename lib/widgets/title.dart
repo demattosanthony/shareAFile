@@ -8,11 +8,15 @@ class ShareTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 50),
-      child: Text(
-        'Share A File',
-        style: titleStyle,
+    return FittedBox(
+      fit: BoxFit.fitWidth,
+      child: Container(
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.only(top: 30),
+        child: Text(
+          'Share A File',
+          style: titleStyle,
+        ),
       ),
     );
   }

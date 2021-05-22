@@ -3,7 +3,6 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:share_a_file/locator.dart';
 import 'package:share_a_file/managers/EmailManager.dart';
-import 'package:share_a_file/services/firebase_storage_service.dart';
 
 class UploadButton extends StatefulWidget {
   const UploadButton({

@@ -11,7 +11,7 @@ class Description extends StatelessWidget {
     return Container(
       width: 600,
       child: Text(
-        'Sending large files between devices can be difficult sometimes. This solution uploads your file to the cloud and sends a download link to the email specified. * Make sure to check spam folder *',
+        'Sending large files between devices can be difficult sometimes. This solution uploads your file to the cloud and sends a download link to the email specified.\n * Make sure to check spam folder *',
         style: descriptionStyle,
         textAlign: TextAlign.center,
       ),

@@ -19,18 +19,16 @@ class EmailTextField extends StatelessWidget {
       ),
       width: 200,
       height: 50,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          controller: emailContr,
-          onChanged: (String email) {
-            sl<EmailManager>().email = email;
-          },
-          decoration: InputDecoration(
-              hintText: 'Email',
-              border: InputBorder.none,
-              hintStyle: TextStyle(fontSize: 20, color: Colors.grey[400])),
-        ),
+      child: TextField(
+        controller: emailContr,
+        onChanged: (String email) {
+          sl<EmailManager>().email = email;
+        },
+        decoration: InputDecoration(
+            hintText: 'Email',
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.all(8),
+            hintStyle: TextStyle(fontSize: 20, color: Colors.grey[400])),
       ),
     );
   }

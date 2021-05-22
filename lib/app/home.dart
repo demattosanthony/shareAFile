@@ -1,9 +1,7 @@
-// ignore: unused_import
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:share_a_file/app/theme.dart';
 import 'package:share_a_file/widgets/description.dart';
-import 'package:share_a_file/widgets/upload_btn.dart';
 import 'package:share_a_file/widgets/title.dart';
 import 'package:share_a_file/widgets/upload_form.dart';
 
