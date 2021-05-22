@@ -1,3 +1,7 @@
+import 'dart:html';
+
+import 'package:dotted_border/dotted_border.dart';
+import 'package:drop_zone/drop_zone.dart';
 import 'package:flutter/material.dart';
 import 'package:share_a_file/locator.dart';
 import 'package:share_a_file/managers/EmailManager.dart';
@@ -5,9 +9,17 @@ import 'package:share_a_file/widgets/upload_btn.dart';
 
 import 'email_text_field.dart';
 
-class UploadForm extends StatelessWidget {
+class UploadForm extends StatefulWidget {
   final TextEditingController emailContr;
   const UploadForm({Key key, @required this.emailContr}) : super(key: key);
+
+  @override
+  _UploadFormState createState() => _UploadFormState();
+}
+
+class _UploadFormState extends State<UploadForm> {
+  bool isHovering = false;
+  String fileName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +27,100 @@ class UploadForm extends StatelessWidget {
       margin: EdgeInsets.only(top: 100),
       child: Column(
         children: [
-          EmailTextField(emailContr: emailContr),
+          EmailTextField(emailContr: widget.emailContr),
+          Container(
+            height: 300,
+            width: 600,
+            child: DropZone(
+                onDragEnter: () {
+                  print('entered');
+                  setState(() {
+                    isHovering = true;
+                  });
+                },
+                onDragExit: () {
+                  setState(() {
+                    isHovering = false;
+                  });
+                },
+                onDrop: (List<File> files) {
+                  print('files dropped');
+                  print(files);
+                  sl<EmailManager>().fileToUpload = files[0];
+                  setState(() {
+                    fileName = files[0].name;
+                    isHovering = false;
+                  });
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 20),
+                  width: 600,
+                  height: 300,
+                  child: Stack(
+                    children: [
+                      Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25)),
+                          elevation: 10,
+                          child: Container()),
+                      Positioned(
+                          top: 30,
+                          left: 30,
+                          right: 30,
+                          bottom: 30,
+                          child: DottedBorder(
+                            radius: Radius.circular(15),
+                            borderType: BorderType.RRect,
+                            dashPattern: [6],
+                            color: Colors.grey,
+                            child: Container(
+                              color:
+                                  isHovering ? Color(0xffE4EEFC) : Colors.white,
+                              width: 6000,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      height: 110,
+                                      width: 110,
+                                      margin: EdgeInsets.only(top: 20),
+                                      child: Image.network(
+                                          'https://share-a-file.web.app/assets/assets/images/folder.png')),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: fileName == ""
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Drag File Here or ',
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Text(
+                                                'Browse',
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.blueAccent),
+                                              ),
+                                            ],
+                                          )
+                                        : Text(sl<EmailManager>()
+                                            .fileToUpload
+                                            .name),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ))
+                    ],
+                  ),
+                )),
+          ),
           UploadButton(),
           Container(
             margin: EdgeInsets.only(top: 30),

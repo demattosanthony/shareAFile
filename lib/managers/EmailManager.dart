@@ -14,4 +14,5 @@ class EmailManager {
         .uploadFile(fileToUpload, fileToUpload.name);
     sl<TwilloService>().sendEmail(email, link);
   }
+
 }

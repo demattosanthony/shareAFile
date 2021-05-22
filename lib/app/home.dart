@@ -18,17 +18,19 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ShareTitle(),
-            Description(),
-            UploadForm(
-              emailContr: emailController,
-            )
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ShareTitle(),
+              Description(),
+              UploadForm(
+                emailContr: emailController,
+              )
+            ],
+          ),
         ),
       ),
       backgroundColor: Colors.white,
