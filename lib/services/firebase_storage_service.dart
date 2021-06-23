@@ -11,7 +11,7 @@ class FbStorageServiceImplementation implements FbStorageService {
   Future<String> uploadFile(File file, String fileName) async {
     var result = await FirebaseStorage.instance
         .refFromURL('gs://covid-wedding.appspot.com')
-        .child('$fileName${DateTime.now()}')
+        .child('$fileName')
         .putBlob(file);
 
     String downloadUrl = await result.ref.getDownloadURL();

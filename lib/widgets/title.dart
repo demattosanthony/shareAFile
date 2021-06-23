@@ -12,7 +12,7 @@ class ShareTitle extends StatelessWidget {
       fit: BoxFit.fitWidth,
       child: Container(
         padding: EdgeInsets.all(8),
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 15),
         child: Text(
           'Share A File',
           style: titleStyle,

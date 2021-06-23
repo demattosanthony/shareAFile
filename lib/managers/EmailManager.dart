@@ -5,14 +5,13 @@ import 'package:share_a_file/services/firebase_storage_service.dart';
 import 'package:share_a_file/services/twillo_service.dart';
 
 class EmailManager {
-  String email;
-  String link;
+  String email = "";
+  String link = "";
   File fileToUpload;
 
-  void sendEmail() async {
+  Future<int> sendEmail() async {
     link = await sl<FbStorageService>()
         .uploadFile(fileToUpload, fileToUpload.name);
-    sl<TwilloService>().sendEmail(email, link);
+    return await sl<TwilloService>().sendEmail(email, link);
   }
-
 }
